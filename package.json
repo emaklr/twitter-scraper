@@ -1,0 +1,24 @@
+{
+  "name": "twitter-scraper",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "scrape": "node dist/jobs/scrape.js",
+    "dev": "ts-node-dev src/index.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.4.0",
+    "airtable": "^0.12.1",
+    "openai": "^4.0.0",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "@types/node": "^18.16.3",
+    "@types/express": "^4.17.17",
+    "ts-node-dev": "^2.0.0"
+  }
+}
