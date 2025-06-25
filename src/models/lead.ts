@@ -7,4 +7,5 @@ export interface Lead {
   bio?: string;
   lastTweetDate: string;
   personaScore: number;
+  message?: string;
 }

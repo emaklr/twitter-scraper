@@ -1,23 +1,24 @@
-import { Configuration, OpenAIApi } from 'openai';
-import { Lead } from '../models/lead';
+import OpenAI from 'openai'
+import { Lead } from '../models/lead'
 
-const apiKey = process.env.OPENAI_API_KEY;
-
-const openai = apiKey
-  ? new OpenAIApi(new Configuration({ apiKey }))
-  : undefined;
+// Load API key from env
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY!,
+})
 
 export async function generateMessage(lead: Lead): Promise<string> {
-  if (!openai) return 'No OpenAI API key configured.';
-  const { data } = await openai.createChatCompletion({
+  if (!openai) return 'No OpenAI API key configured.'
+
+  const response = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
     messages: [
       { role: 'system', content: 'You are a helpful outreach assistant.' },
       {
         role: 'user',
-        content: `Write a short outreach message to ${lead.username} about automation services.`
+        content: `Write a short outreach message to ${lead.username} about automation services for solo creators. Keep it casual, helpful, and non-pushy.`
       }
-    ]
-  });
-  return data.choices[0]?.message?.content?.trim() || '';
+    ],
+  })
+
+  return response.choices[0]?.message?.content?.trim() || ''
 }

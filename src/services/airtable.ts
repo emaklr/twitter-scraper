@@ -8,14 +8,16 @@ const base = new Airtable({ apiKey }).base(baseId);
 
 export async function createLead(lead: Lead): Promise<void> {
   await base('Leads').create({
-    Username: lead.username,
-    Tweet: lead.tweetText,
-    Source: lead.triggerSource,
-    Followers: lead.followerCount,
-    Bio: lead.bio,
-    LastTweet: lead.lastTweetDate,
-    PersonaScore: lead.personaScore
-  });
+  Username: lead.username,
+  Tweet: lead.tweetText,
+  Source: lead.triggerSource,
+  Followers: lead.followerCount,
+  Bio: lead.bio,
+  LastTweet: lead.lastTweetDate,
+  PersonaScore: lead.personaScore,
+  Message: lead.message
+});
+
 }
 
 export async function listLeads(): Promise<Lead[]> {
