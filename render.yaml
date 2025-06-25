@@ -1,0 +1,17 @@
+services:
+  - type: cron
+    name: twitter-scraper
+    env: node
+    plan: free
+    schedule: "0 * * * *" # every hour (you can change this later)
+    buildCommand: npm install
+    startCommand: npm run scrape
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: TWITTER_BEARER_TOKEN
+        sync: false
+      - key: AIRTABLE_API_KEY
+        sync: false
+      - key: AIRTABLE_BASE_ID
+        sync: false
